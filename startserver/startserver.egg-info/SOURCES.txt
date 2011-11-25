@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+startserver/__init__.py
+startserver/main.py
+startserver.egg-info/PKG-INFO
+startserver.egg-info/SOURCES.txt
+startserver.egg-info/dependency_links.txt
+startserver.egg-info/entry_points.txt
+startserver.egg-info/not-zip-safe
+startserver.egg-info/requires.txt
+startserver.egg-info/top_level.txt

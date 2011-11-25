@@ -1,0 +1,5 @@
+
+      # -*- Entry points: -*-
+    [console_scripts]
+    startserver = startserver.main:main
+      
