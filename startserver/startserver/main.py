@@ -1,11 +1,14 @@
 from Tkinter import *
 import webbrowser
 import os.path, sys
-from multiprocessing import Process
+#from multiprocessing import Process
+from threading import Thread
 from paste.deploy import loadapp, loadserver
 import re
 
 port_re = re.compile(r'^port *= *([0-9]*)[^0-9]',re.M)
+
+
 
 def app_path():
     pathname = os.path.dirname(sys.argv[0])        
@@ -35,10 +38,11 @@ class Application(Frame):
         
         wsgi_app = loadapp('config:%s' % ini)
         server = loadserver('config:%s' % ini)
-        self.process = Process(target=server, args=(wsgi_app,))
 
-        self.process.start()
-
+        self.thread = Thread(target=server, args=(wsgi_app,))
+        self.thread.daemon = True
+        self.thread.start()
+		
     def createWidgets(self):
         top=self.winfo_toplevel()                
         top.rowconfigure(0, weight=1)            
@@ -55,7 +59,7 @@ class Application(Frame):
         self.start.grid(row=0, column=0, sticky=N+S+E+W)
 
     def destroy(self):
-        self.process.terminate()
+        pass
 
 
 def main():
